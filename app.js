@@ -5,13 +5,14 @@ const bodyParser = require("body-parser");
 const { default: mongoose } = require("mongoose");
 const _ = require("lodash");
 const app = express();
-
+const dotenv = require("dotenv");
+dotenv.config();
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://manish:manish123@cluster0.t3yf04q.mongodb.net/todolistDB", { useNewUrlParser: true });
+mongoose.connect(process.env.mongodb_url, { useNewUrlParser: true });
 
 
 const itemSchema = {
